@@ -152,21 +152,24 @@ def get_orders(portfolio_id):
     return cursor.fetchall()
     
 
-def post_order(portfolio_id, coin_id, time_of_purch, amount_bought):
+def post_order(portfolio_id, coin_id, amount_bought, time_of_purch):
+    id = str(uuid.uuid4())
     try:
         cursor.execute("""
-        INSERT INTO public.Watching (
+        INSERT INTO public.Orders (
         id,
         portfolio_id,
         coin_id,
-        time_of_purch,
-        amount_bought
-        ) VALUES (?, ?, ?, ?, ?, ?)""", (str(uuid.uuid4()), portfolio_id, coin_id, time_of_purch, amount_bought))
+        amount_bought,
+        time_of_purch
+        ) VALUES (%s, %s, %s, %s, %s)""", (id, portfolio_id, coin_id, amount_bought, time_of_purch))
         
         # commit the changes
         conn.commit()
+        return id
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
+        return "Failed to post order"
 
 def delete_order(id):
     try:
