@@ -5,7 +5,7 @@ from flask import Flask, request
 from flask_cors import CORS, cross_origin
 from pycoingecko import CoinGeckoAPI
 
-from auth import verify_jwt
+from .auth import verify_jwt
 
 # Load dotenv files
 load_dotenv()
