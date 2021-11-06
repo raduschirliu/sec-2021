@@ -36,11 +36,7 @@ const WatchPage = () => {
             {loading ? (
               <CircularProgress />
             ) : watchList.length > 0 ? (
-              watchList.map((p) => (
-                <div key={p.id} className="watch-page-portfolio">
-                  <p>{p.name}</p>
-                </div>
-              ))
+              watchList.map((p) => <p className="watch-page-item" key={p.id}>{p.name}</p>)
             ) : (
               <p>
                 No watched coins, please go to the coin list to add a watched
