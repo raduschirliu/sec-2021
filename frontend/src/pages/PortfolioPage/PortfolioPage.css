@@ -1,7 +1,25 @@
-.portfolios-page {
+.portfolio-page {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10% 1fr;
-    row-gap: 40px;
-    height: 100vh;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 50px;
+    margin: 40px;
+}
+
+.portfolio-page-new {
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-page-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-page-portfolio {
+    display: flex;
+}
+
+.portfolio-page-portfolio > p {
+    flex: 1;
 }

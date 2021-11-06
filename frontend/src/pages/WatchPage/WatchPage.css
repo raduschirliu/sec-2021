@@ -1,0 +1,12 @@
+.watch-page {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 50px;
+    margin: 40px;
+}
+
+.watch-page-list {
+    display: flex;
+    flex-direction: column;
+}
