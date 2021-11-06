@@ -6,12 +6,12 @@ from flask_cors import CORS, cross_origin
 from pycoingecko import CoinGeckoAPI
 import json
 
-from auth import verify_jwt
+from .auth import verify_jwt
 
 # Load dotenv files
 load_dotenv()
 
-from util import db
+from .util import db
 db.create_users_table()
 db.create_portfolios_table()
 db.create_purchases_table()
