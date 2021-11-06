@@ -37,19 +37,19 @@ def get_coinlist():
 def get_watchlist():
     return ""
 
-@app.route('/watchlist/{watched_id}', methods=['GET'])
+@app.route('/watchlist/<watching_id>', methods=['GET'])
 @cross_origin
-def get_watched():
+def get_watching():
     return ""
 
 @app.route('/watchlist', methods=['POST'])
 @cross_origin
-def post_watched():
+def post_watching():
     return ""
 
-@app.route('/watchlist/{watched_id}', methods=['DELETE'])
+@app.route('/watchlist/<watching_id>', methods=['DELETE'])
 @cross_origin
-def delete_watched():
+def delete_watching():
     return ""
 
 # PURCHASES
@@ -59,7 +59,7 @@ def delete_watched():
 def get_purchases():
     return ""
 
-@app.route('/purchases/{purchase_id}', methods=['GET'])
+@app.route('/purchases/<purchase_id>', methods=['GET'])
 @cross_origin
 def get_purchase():
     return ""
@@ -76,7 +76,7 @@ def post_purchase():
 def get_orders():
     return ""
 
-@app.route('/orders/{order_id}', methods=['GET'])
+@app.route('/orders/<order_id>', methods=['GET'])
 @cross_origin
 def get_order():
     return ""
@@ -86,7 +86,7 @@ def get_order():
 def post_order():
     return ""
 
-@app.route('/orders/{order_id}', methods=['DELETE'])
+@app.route('/orders/<order_id>', methods=['DELETE'])
 @cross_origin
 def delete_order():
     return ""
