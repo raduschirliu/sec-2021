@@ -1,0 +1,56 @@
+.home-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-logo {
+  width: 500px;
+  margin: auto;
+}
+
+.home-sun {
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  position: relative;
+}
+
+.home-account-container {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  text-align: center;
+}
+
+.home-account {
+  background-color: #fff0c7;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.home-account:hover {
+  opacity: 0.9;
+}
+
+.home-story {
+  background-color: #FFCCA5;
+}
+
+.home-story-title {
+  font-weight: 600;
+  font-size: 45px;
+  text-align: center;
+  padding-top: 125px;
+  margin: 0;
+}
+
+.home-story-desc {
+  width: 65%;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 60px;
+}
