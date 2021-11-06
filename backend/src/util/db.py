@@ -39,9 +39,9 @@ def create_purchases_table():
     id varchar(255) NOT NULL PRIMARY KEY,
     portfolio_id varchar(255) NOT NULL,
     coin_id varchar(255) NOT NULL,
-    time_of_purch timestamp without time zone NOT NULL,
     purch_price float NOT NULL,
-    amount_bought float NOT NULL
+    amount_bought float NOT NULL,
+    time_of_purch timestamp without time zone DEFAULT CURRENT_TIMESTAMP
     ) """
     
     try:
@@ -55,8 +55,8 @@ def create_orders_table():
     id varchar(255) NOT NULL PRIMARY KEY,
     portfolio_id varchar(255) NOT NULL,
     coin_id varchar(255) NOT NULL,
-    time_of_purch timestamp without time zone NOT NULL,
-    amount_bought float NOT NULL
+    amount_bought float NOT NULL,
+    time_of_purch timestamp without time zone DEFAULT CURRENT_TIMESTAMP
     ) """
     
     try:
@@ -125,22 +125,24 @@ def get_purchases(portfolio_id):
     cursor.execute(sql, (portfolio_id,))
     return cursor.fetchall()
 
-def post_purchase(portfolio_id, coin_id, time_of_purch, purch_price, amount_bought):
+def post_purchase(portfolio_id, coin_id, purch_price, amount_bought):
+    id = str(uuid.uuid4())
     try:
         cursor.execute("""
-        INSERT INTO public.Watching (
+        INSERT INTO public.Purchases (
         id,
         portfolio_id,
         coin_id,
-        time_of_purch,
         purch_price,
         amount_bought
-        ) VALUES (%s, %s, %s, %s, %s, %s)""", (str(uuid.uuid4()), portfolio_id, coin_id, time_of_purch, purch_price, amount_bought))
+        ) VALUES (%s, %s, %s, %s, %s)""", (id, portfolio_id, coin_id, purch_price, amount_bought))
         
         # commit the changes
         conn.commit()
+        return (id)
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
+        return "Failed to post purchase"
 
 # ORDERS
 
