@@ -43,19 +43,28 @@ def get_coinlist():
 @app.route('/watchlist/<portfolio_id>', methods=['GET'])
 @cross_origin()
 def get_watchlist(portfolio_id):
+    # jwt = verify_jwt()
+
+    # if jwt == False:
+    #     return "Unauthorized", 401
+
     return json.dumps(db.get_watchlist(portfolio_id))
 
-@app.route('/watchlist', methods=['POST'])
+@app.route('/watchlist/<portfolio_id>/<coin_id>', methods=['POST'])
 @cross_origin()
-def post_watching():
-    # portfolio id, coin id in body
-    return ""
+def post_watching(portfolio_id, coin_id):
+    # jwt = verify_jwt()
 
-@app.route('/watchlist', methods=['DELETE'])
+    # if jwt == False:
+    #     return "Unauthorized", 401
+
+    return json.dumps(db.post_watching(portfolio_id, coin_id))
+
+@app.route('/watchlist/<id>', methods=['DELETE'])
 @cross_origin()
-def delete_watching():
-    # watching id in body
-    return ""
+def delete_watching(id):
+    # TODO: BROKEN
+    return db.delete_watching(id)
 
 # PURCHASES
 
@@ -64,10 +73,10 @@ def delete_watching():
 def get_purchases():
     return ""
 
-@app.route('/purchase', methods=['POST'])
+@app.route('/purchase/{portfolio_id}/{coin_id}/{amount}', methods=['POST'])
 @cross_origin()
-def post_purchase():
-    # portfolio id, coin_id, amount bought
+def post_purchase(portfolio_id, coin_id, amount):
+    db.post_purchase(portfolio_id, coin_id, amount)
     return ""
 
 # ORDERS
@@ -93,21 +102,23 @@ def delete_order():
 @app.route('/portfolios/<user_id>', methods=['GET'])
 @cross_origin()
 def get_portfolios(user_id):
-    return json.dumps(get_portfolios(user_id))
-
-@app.route('/portfolios', methods=['POST'])
-@cross_origin()
-def post_portfolio():
     # jwt = verify_jwt()
 
-    # # if jwt == False:
-    # #     return "Unauthorized", 401
+    # if jwt == False:
+    #     return "Unauthorized", 401
+    return json.dumps(db.get_portfolios(user_id))
+
+@app.route('/portfolios/<user_id>/<name>', methods=['POST'])
+@cross_origin()
+def post_portfolio(user_id, name):
+    # jwt = verify_jwt()
+
+    # if jwt == False:
+    #     return "Unauthorized", 401
     
-    # # user_id, name
-    # data = request.json
-    # id = post_portfolio(data['user_id'], data['name'])
-    # return(id)
-    return ""
+    # user_id, name
+    id = db.post_portfolio(user_id, name)
+    return(id)
 
 # Update user account information
 @app.route('/account', methods=['POST'])
